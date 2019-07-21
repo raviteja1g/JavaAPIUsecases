@@ -1,34 +1,8 @@
-package com.ravi.challenges;
+package com.ravi.problems.arrays;
 
 import java.util.Arrays;
 
-public class ArrayUseCases {
-
-	/**
-	 * Input Array --> [1, 0, 3, 0, 0, 2 ] Output Array --> [1, 3, 2, 0, 0, 0]
-	 * 
-	 * Constraints:- 1. In single pass of the array 2. Do not make a copy of array
-	 * nor create new array and move the zeros within the input array
-	 */
-	public static int[] moveZerosToTheEnd(int[] inputArray) {
-		int currentZeroIndex = -1;
-		int numberOfZeros = 0;
-		for (int i = 0; i < inputArray.length; i++) {
-			if (inputArray[i] == 0) {
-				currentZeroIndex = i - numberOfZeros;
-				numberOfZeros++;
-			} else {
-				if (currentZeroIndex != -1) {
-					inputArray[currentZeroIndex] = inputArray[i];
-					inputArray[i] = 0;
-					currentZeroIndex = i - numberOfZeros;
-				}
-			}
-
-		}
-
-		return inputArray;
-	}
+public class Sorting {
 
 	/**
 	 * Simple Insertion sort of array of int
@@ -100,13 +74,10 @@ public class ArrayUseCases {
 
 		return i + 1;
 	}
-
+	
 	public static void main(String[] args) {
 		
-		System.out.println("Move Zeros to end problem input: [ 1, 0, 0, 4, 0, 3, 0, 0, 2 ]");
-		Arrays.stream(moveZerosToTheEnd(new int[] { 1, 0, 0, 4, 0, 3, 0, 0, 2 })).forEach(System.out::print);
-		
-		System.out.println(" \nInsertion Sort input { 3, 2, 1, 0, 5, 1 }");
+		System.out.println("Insertion Sort input { 3, 2, 1, 0, 5, 1 }");
 		insertionSort(new int[] { 3, 2, 1, 0, 5, 1 });
 		
 		System.out.println(" \nSelection Sort input { 3, 2, 1, 0, 5, 1 }");
@@ -114,7 +85,7 @@ public class ArrayUseCases {
 
 		System.out.println(" \nQuick Sort input { 3, 2, 1, 0, 5, 1 }");
 		
-		ArrayUseCases testRun = new ArrayUseCases();
+		Sorting testRun = new Sorting();
 		testRun.quickSort(new int[] { 3, 2, 1, 0, 5, 1 });
 	}
 

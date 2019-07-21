@@ -1,4 +1,4 @@
-package com.ravi.challenges;
+package com.ravi.problems.strings;
 
 import java.util.ArrayList;
 import java.util.Arrays;
