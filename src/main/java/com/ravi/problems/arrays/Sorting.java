@@ -74,19 +74,77 @@ public class Sorting {
 
 		return i + 1;
 	}
-	
+
+	public void merge(int[] inputArray, int start, int middle, int end) {
+
+		int[] firstHalfOfArray = new int[middle - start + 1];
+		int[] secondHalfOfArray = new int[end - middle];
+
+		for (int i = 0; i < firstHalfOfArray.length; i++) {
+			firstHalfOfArray[i] = inputArray[start + i];
+		}
+		for (int i = 0; i < secondHalfOfArray.length; i++) {
+			secondHalfOfArray[i] = inputArray[middle + i + 1];
+		}
+
+		int i = 0, j = 0;
+		int k = start;
+		while (i < firstHalfOfArray.length && j < secondHalfOfArray.length) {
+			if (firstHalfOfArray[i] <= secondHalfOfArray[j]) {
+				inputArray[k] = firstHalfOfArray[i];
+				i++;
+			} else {
+				inputArray[k] = secondHalfOfArray[j];
+				j++;
+			}
+			k++;
+		}
+
+		while (i < firstHalfOfArray.length) {
+			inputArray[k] = firstHalfOfArray[i];
+			i++;
+			k++;
+		}
+
+		while (j < secondHalfOfArray.length) {
+			inputArray[k] = secondHalfOfArray[j];
+			j++;
+			k++;
+		}
+
+	}
+
+	void mergeSortPartion(int[] inputArray, int start, int end) {
+		if (start < end) {
+			int middleIndex = (start + end) / 2;
+			mergeSortPartion(inputArray, start, middleIndex);
+			mergeSortPartion(inputArray, middleIndex + 1, end);
+			merge(inputArray, start, middleIndex, end);
+		}
+	}
+
+	public void mergeSort(int[] inputArray) {
+		int lengthOfInput = inputArray.length;
+		mergeSortPartion(inputArray, 0, lengthOfInput - 1);
+		Arrays.stream(inputArray).forEach(System.out::print);
+	}
+
 	public static void main(String[] args) {
-		
+
 		System.out.println("Insertion Sort input { 3, 2, 1, 0, 5, 1 }");
 		insertionSort(new int[] { 3, 2, 1, 0, 5, 1 });
-		
-		System.out.println(" \nSelection Sort input { 3, 2, 1, 0, 5, 1 }");
+
+		System.out.println("\nSelection Sort input { 3, 2, 1, 0, 5, 1 }");
 		selectionSort(new int[] { 3, 2, 1, 0, 5, 1 });
 
-		System.out.println(" \nQuick Sort input { 3, 2, 1, 0, 5, 1 }");
-		
+		System.out.println("\nQuick Sort input { 3, 2, 1, 0, 5, 1 }");
+
 		Sorting testRun = new Sorting();
 		testRun.quickSort(new int[] { 3, 2, 1, 0, 5, 1 });
+
+		System.out.println("\nMerge Sort input { 3, 2, 1, 0, 5, 1 }");
+
+		testRun.mergeSort(new int[] { 3, 2, 1, 0, 5, 1 });
 	}
 
 }
